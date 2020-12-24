@@ -4,7 +4,7 @@
   "description": "Rest API sportnews",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js --exec babel-node --presets babel-preset-env"
   },
   "keywords": [
     "express",
