@@ -20,6 +20,7 @@ exports.register = async (req, res) => {
         const user = await newUser.save();
         if (!user) throw Error("gagal input data user");
         res.status(200).json({
+            "error": false,
             "message": "Anda berhasil mendaftar, silahkan login",
             "user": {
                 id: user._id,
@@ -29,7 +30,10 @@ exports.register = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).json({ msg: error.message });
+        res.status(400).json({
+            "error": true,
+            msg: error.message
+        });
     }
 };
 
@@ -52,7 +56,7 @@ exports.login = async (req, res) => {
             },
             (error, token) => {
                 res.status(200).json({
-                    status: "success",
+                    "error": false,
                     message: "Login Berhasil",
                     user,
                     token,
@@ -60,6 +64,9 @@ exports.login = async (req, res) => {
             }
         );
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({
+            "error": true,
+            msg: error.message
+        });
     }
 };

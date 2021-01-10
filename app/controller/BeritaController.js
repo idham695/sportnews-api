@@ -27,6 +27,7 @@ exports.create = async (req, res) => {
         const berita = await newBerita.save();
         if (!berita) throw Error("gagal input berita");
         res.status(200).json({
+            "error": false,
             "message": "Berita anda telah dibuat",
             "berita": {
                 judul : berita.judul,
@@ -38,7 +39,10 @@ exports.create = async (req, res) => {
             }
         })
     } catch (error) {
-        res.status(400).json({ msg: error.message });
+        res.status(400).json({
+            "error": true,
+            msg: error.message
+        });
     }
 }
 
@@ -46,9 +50,15 @@ exports.findAll = async (req, res) => {
     try {
         const berita = await Berita.find();
         if (!berita) throw Error("berita belum dimasukan");
-        res.status(200).json(berita);
+        res.status(200).json({
+            "error": false,
+            berita
+        });
     } catch (error) {
-         res.status(400).json({ msg: error.message });
+        res.status(400).json({
+            "error": TRUE,
+            msg: error.message
+        });
     }
 }
 
@@ -58,9 +68,15 @@ exports.findOne = async (req, res) => {
             slug: req.params.slug
         });
         if (!berita) throw Error("berita tidak ada");
-        res.status(200).json(berita);
+        res.status(200).json({
+            "error": false,
+            berita
+        });
     } catch (error) {
-         res.status(400).json({ msg: error.message });
+        res.status(400).json({
+            "error": true,
+             msg: error.message
+        });
     }
 }
 
@@ -82,6 +98,7 @@ exports.update = async (req, res) => {
         );
         if (!berita) throw Error("gagal update berita");
         res.status(200).json({
+            "error": false,
             "message": "Berita anda telah diupdate",
             "berita": {
                 judul: berita.judul,
@@ -93,7 +110,8 @@ exports.update = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).json({ msg: error.message });
+        res.status(400).json({ "error": true,
+            msg: error.message });
     }
 
 };
@@ -105,8 +123,14 @@ exports.delete = async (req, res) => {
         const removed = await berita.remove();
         if (!removed) throw Error("Hapus data berita gagal");
 
-        res.status(200).json({ success: true });
+        res.status(200).json({
+            "error": false,
+            "message": "Berita berhasil di hapus"
+        });
     } catch (error) {
-        res.status(400).json({ msg: error.message });
+        res.status(400).json({
+            "error": true,
+            msg: error.message
+        });
     }
 };
