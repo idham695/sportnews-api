@@ -16,7 +16,6 @@ exports.create = async (req, res) => {
         judul : req.body.judul,
         slug : slugify(req.body.judul),
         deskripsi: req.body.deskripsi,
-        gambar: req.file.path,
     }); 
 
     try {
@@ -84,7 +83,6 @@ exports.update = async (req, res) => {
         judul: req.body.judul,
         slug: slugify(req.body.judul),
         deskripsi: req.body.deskripsi,
-        gambar: req.file.path,
     };
     try {
         const searchJudul = await Berita.findOne({
