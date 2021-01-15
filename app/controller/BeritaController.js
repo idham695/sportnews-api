@@ -14,7 +14,7 @@ function slugify(text)
 exports.create = async (req, res) => {
     const newBerita = new Berita({
         judul : req.body.judul,
-        slug : slugify(req.body.judul),
+        slug : req.body.judul,
         deskripsi: req.body.deskripsi,
     }); 
 
