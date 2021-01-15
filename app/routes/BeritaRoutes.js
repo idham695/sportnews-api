@@ -28,10 +28,10 @@ var upload = multer({
   limits: { fileSize: 1024 * 1024 * 10 },
 });
 
-router.post("/add_berita", authJwt.verifyToken, berita.create);
-router.get("/get_all_berita", authJwt.verifyToken, berita.findAll);
-router.get("/get_berita_by_slug/:slug", authJwt.verifyToken, berita.findOne);
-router.put("/update_berita/:slug", authJwt.verifyToken, berita.update);
-router.delete("/delete_berita/:slug", authJwt.verifyToken, berita.delete);
+router.post("/add_berita", berita.create);
+router.get("/get_all_berita", berita.findAll);
+router.get("/get_berita_by_slug/:slug", berita.findOne);
+router.put("/update_berita/:slug", berita.update);
+router.delete("/delete_berita/:slug", berita.delete);
 
 export default router;
