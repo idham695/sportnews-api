@@ -33,7 +33,6 @@ exports.create = async (req, res) => {
                 judul : berita.judul,
                 slug : berita.slug,
                 deskripsi : berita.deskripsi,
-                gambar : berita.gambar,
                 created_at : berita.created_at,
                 updated_at : berita.updated_at,
             }
@@ -104,7 +103,6 @@ exports.update = async (req, res) => {
                 judul: berita.judul,
                 slug: berita.slug,
                 deskripsi: berita.deskripsi,
-                gambar: berita.gambar,
                 created_at: berita.created_at,
                 updated_at: berita.updated_at,
             }

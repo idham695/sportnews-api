@@ -10,9 +10,6 @@ const BeritaSchema = new Schema({
     deskripsi: {
         type: String,
     },
-    gambar: {
-        type: String,
-    }, 
     created_at: {
     type: Date,
     default: Date.now(),
