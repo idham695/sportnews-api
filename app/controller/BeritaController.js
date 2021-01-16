@@ -7,10 +7,10 @@ exports.create = async (req, res) => {
     }); 
 
     try {
-        const searchJudul = await Berita.findOne({
-            judul: req.body.judul,
-        });
-        if (searchJudul) throw Error("Judul berita sudah ada");
+        // const searchJudul = await Berita.findOne({
+        //     judul: req.body.judul,
+        // });
+        // if (searchJudul) throw Error("Judul berita sudah ada");
         const berita = await newBerita.save();
         if (!berita) throw Error("gagal input berita");
         res.status(200).json({
@@ -66,10 +66,10 @@ exports.update = async (req, res) => {
         deskripsi: req.body.deskripsi,
     };
     try {
-        const searchJudul = await Berita.findOne({
-            judul: req.body.judul,
-        });
-        if (searchJudul) throw Error("Judul berita sudah ada");
+        // const searchJudul = await Berita.findOne({
+        //     judul: req.body.judul,
+        // });
+        // if (searchJudul) throw Error("Judul berita sudah ada");
         const berita = await Berita.findByIdAndUpdate({ _id: req.params.id }, updateBerita, {
             useFindAndModify: false,
         });
