@@ -34,7 +34,6 @@ exports.findAll = async (req, res) => {
         const berita = await Berita.find();
         if (!berita) throw Error("berita belum dimasukan");
         res.status(200).json({
-            "error": false,
             berita
         });
     } catch (error) {
