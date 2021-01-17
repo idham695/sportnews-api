@@ -13,10 +13,15 @@ exports.register = async (req, res) => {
         password: bcrypt.hashSync(req.body.password, 8)
     });
     try {
+        // Validasi Email
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var checkmail = mailformat.test(req.body.email);
+        if (!checkmail) throw Error("Email tidak valid");
+
         const searchUser = await Users.findOne({
             email: req.body.email,
         });
-        if (searchUser) throw Error("users telah terdaftar");
+        if (searchUser) throw Error("User telah terdaftar");
         const user = await newUser.save();
         if (!user) throw Error("gagal input data user");
         res.status(200).json({
@@ -39,6 +44,12 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        // Validasi Email
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var checkmail = mailformat.test(req.body.email);
+        if (!checkmail) throw Error("Email tidak valid");
+
+
         const user = await Users.findOne({
             email: req.body.email
         });
